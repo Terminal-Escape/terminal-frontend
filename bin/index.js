@@ -34,6 +34,7 @@ async function loadPrompts() {
   // call API, gets room description, prompts for user action
   //      later --> display room options (room1, room2, etc.)
   // need fetch-utils
+
   let room = await fetchRoom();
   console.log(room[0].room_description);
   console.log("The Objects in the room are...");
