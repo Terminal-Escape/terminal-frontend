@@ -39,5 +39,27 @@ async function loadPrompts() {
   // need fetch-utils
   const room = await fetchRoom();
   console.log(room);
+
+  let roomObjects =  prompt(`
+  Objects in the room:
+  1. Desk
+  2. Lamp
+  3. Bunkbeds  
+  `);
+
+  console.log(await getObjectById(`${roomObjects}`));
+
+
+  if (roomObjects === '1') {
+    await getObjectById(1);
+    console.log('description of Desk object')
+  } else if (roomObjects === '2') {
+    await getObjectById(2); 
+  } else if (roomObjects === '3') {
+    await getObjectById(3);
+  } else {
+    console.log('please input the number of the object you wish to investigate');
+  }
+
 }
 loadPrompts();
