@@ -34,7 +34,7 @@ async function loadPrompts() {
   // call API, gets room description, prompts for user action
   //      later --> display room options (room1, room2, etc.)
   // need fetch-utils
-  const room = await fetchRoom();
+  let room = await fetchRoom();
   console.log(room[0].room_description);
   console.log("The Objects in the room are...");
   console.log("1. Desk");
@@ -42,11 +42,28 @@ async function loadPrompts() {
   console.log("3. A Small metal Lock Box");
   console.log("4. Window");
   console.log("5. Door");
-  const object = prompt("Which object would you like to investigate? ");
+  let object = prompt("Which object would you like to investigate? ");
+  if(object === '1') {
+    console.log(room[0].rooms_objects[0].object_description);
+  } 
+  else if(object === '2') {
+    console.log(room[0].rooms_objects[1].object_description);
+  }
+  else if(object === '3') {
+    console.log(room[0].rooms_objects[2].object_description);
+  }
+  else if(object === '4') {
+    console.log(room[0].rooms_objects[3].object_description);
+  }
+  else if(object === '5') {
+    console.log(room[0].rooms_objects[4].object_description);
+  } else {
+    console.log('Unacceptable')
+  }
 
-  console.log(room[0]);
-
-  console.log(object);
+  
+  
+  // console.log(object);
   // const temp = await fetchObjects(object);
 }
 loadPrompts();
