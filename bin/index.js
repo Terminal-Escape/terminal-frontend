@@ -46,80 +46,80 @@ async function loadPrompts() {
   `);
   
   let user_items = await fetchUserItem();
-
   // -- test -- 
   // let { user_items } = await fetchUserItem();
 
-  console.log(user_items);
+  console.log(user_items[1].item_true);
 
   let object = prompt("Which object would you like to investigate? ");
   if(object === '1') {
-    if(user_items.lantern === false && user_items.journal === false) {
+    if(user_items[2].item_true === false && user_items[3].item_true === false) {
       console.log(room[0].rooms_objects[0].object_description);
-      console.log(`Which do you wish to investigate?
+      let deskPrompt = prompt(`Which do you wish to investigate?
       1. Lantern
       2. Journal
       `)  
-      const deskPrompt = prompt('What do you investigate?');
       if (deskPrompt === '1') {
         console.log('You pick up the lantern.');
-        user_items.lantern = true;
+        user_items[2].item_true = true;
       } else if(deskPrompt === '2'){
         console.log('You pick up and flip through the journal');
         console.log('A worn leather bound journal.');
         console.log('The final page has been ripped out but the following can be read from top to bottom on the remaining scraps of page: Doo... Co... 7')
-        user_items.journal = true;
+        user_items[3].item_true = true;
+        console.log(user_items[3].item_true);
       }
-      } else if(user_items.lantern === true && user_items.journal === false) {
+      } else if(user_items[2].item_true === true && user_items[3].item_true === false) {
           console.log(room[0].rooms_objects[0].object_secret_one);
           console.log('You pick up and flip through the journal');
           console.log('A worn leather bound journal.');
           console.log('The final page has been ripped out but the following can be read from top to bottom on the remaining scraps of page: Doo... Co... 7')
-          user_items.journal = true;
-      } else if(user_items.lantern === false && user_items.journal === true) {
+          user_items[3].item_true = true;
+      } else if(user_items[2].item_true === false && user_items[3].item_true === true) {
           console.log(room[0].rooms_objects[0].object_secret_two);
           console.log('You pick up the lantern.');
-          user_items.lantern = true;
-      } else if (user_items.lantern === true && user_items.journal === true) {
+          user_items[2].item_true = true;
+      } else if (user_items[2].item_true === true && user_items[3].item_true === true) {
           console.log(room[0].rooms_objects[0].object_secret_three);    
       }
       // user will be prompted to investigate the lamp or the journal.
       // console.log(desk);
     }
     else if(object === '2') {
-      if(user_items.key === false) {
+      if(user_items[0].item_true === false) {
         console.log(room[0].rooms_objects[1].object_description);
-        user_items.key = true;
-      } else if(user_items.key === true) {
+        user_items[0].item_true = true;
+      } else if(user_items[0].item_true === true) {
         console.log(room[0].rooms_objects[1].object_secret_one);
         // console.log(bunkbeds);
       }
   }
   
   else if(object === '3') {
-    if(user_items.key === false && user_items.weathered_paper === false) {
+    // need to loop back to beginning of game if user cannot open box. 
+    if(user_items[0].item_true === false && user_items[1].item_true === false) {
       console.log(room[0].rooms_objects[2].object_description);
-    } else if(user_items.key === true && user_items.weathered_paper === false) {
+    } else if(user_items[0].item_true === true && user_items[1].item_true === false) {
       console.log(room[0].rooms_objects[2].object_secret_one);
       // console.log(lockbox);
-    } else if (user_item.key === true && user_items.weathered_paper === true) {
+    } else if (user_item[0].item_true === true && user_items[1].item_true === true) {
       console.log(room[0].rooms_objects[2].objects_secret_two);
     }
   }
 
   else if(object === '4') {
-    if(user_items.lantern === false) {
-    console.log(room[0].rooms_objects[3].object_description); }
+    if(user_items[2].item_true === false) {
+    console.log(room[0].rooms_objects[2].object_description); }
 
-    else if(user_items.lantern === true) {
-      console.log(room[0].rooms_objects[3].object_secret_one);
+    else if(user_items[2].item_true === true) {
+      console.log(room[0].rooms_objects[2].object_secret_one);
     }
     console.log(window);
   }
   else if(object === '5') {
     console.log(room[0].rooms_objects[4].object_description);
     // console.log(door);
-    if (user_items.weathered_paper === true && user_items.journal === true && user_items.lantern === true && user_items.key === true) {
+    if (user_items[1].item_true === true && user_items[3].item_true === true && user_items[2].item_true === true && user_items[0].item_true === true) {
       // console.log(keypadNums);
       const doorPrompt = prompt('Enter code to open door');
       if (doorPrompt === '513426') {
