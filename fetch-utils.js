@@ -63,4 +63,4 @@ async function fetchItemsTable() {
 //   return data;
 // }
 
-module.exports = { fetchRoom, fetchUserItem };
+module.exports = { fetchRoom, fetchUserItem, fetchItemsTable };
