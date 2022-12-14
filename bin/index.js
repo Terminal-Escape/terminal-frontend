@@ -35,7 +35,7 @@ const {
   windowNums,
   emptyDesk,
 } = require('../ascii');
-const { signInUser } = require('../auth-utils');
+const { signInUser, singUpUser } = require('../auth-utils');
 require('dotenv').config();
 
 
@@ -46,8 +46,25 @@ let items;
 async function initialPrompt() {
   // const User = await signInUser();
   let validUser = false;
-  
   let userCookie;
+  
+  console.log(`Do you have a login?
+  1. Yes
+  2. No
+  `)
+  let authType = prompt()
+  if(authType === '2') {
+    const userName = prompt(chalk.italic.bgWhite.blue('Enter your Username '))
+    const password = prompt(chalk.italic.bgWhite.blue('Enter your Password '))
+    try {
+      const temp = await singUpUser(userName, password);
+      initialPrompt();
+    } catch (e) {
+      console.log(chalk.bold.red(e.message));
+      initialPrompt();
+    }
+  }
+  if(authType === '1') {
   while (!validUser) {
     const Username = prompt(chalk.italic.bgWhite.blue('What is your Username? '))
     console.log(
@@ -56,8 +73,8 @@ async function initialPrompt() {
       const password = prompt.hide("what is your password? ");
     }
   try {
-    validUser = true;
     userCookie = await signInUser(username, password);
+    validUser = true;
   } catch (e) {
     console.log(chalk.bold.red("Invalid username/password"));
   }
@@ -68,6 +85,8 @@ async function initialPrompt() {
   items = await fetchItemsTable();
   console.log(cabin);
 }
+}
+
 
 async function loadPrompts() {
   let room = await fetchRoom();
