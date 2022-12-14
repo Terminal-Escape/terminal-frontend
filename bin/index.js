@@ -42,7 +42,7 @@ async function askName() {
   console.log(terminalForestCosmike);
   prompt(chalk.bgGray.green('Press any key to continue'));
   user_items = await fetchUserItem();
-  console.log(cabin50Col);
+  console.log(cabin);
 }
 
 async function loadPrompts() {
