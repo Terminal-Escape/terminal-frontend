@@ -2,7 +2,7 @@ const fetch = require("cross-fetch");
 // const cookie = require("cookie");
 const chalk = require("chalk");
 
-async function singUpUser(userName, password) {
+async function signUpUser(userName, password) {
     const resp = await fetch(`${process.env.API_URL}/api/v1/users`, {
         method: "POST",
         headers: {
@@ -34,4 +34,4 @@ async function signInUser(userName, password) {
     }
 }
 
-module.exports = { signInUser, singUpUser };
+module.exports = { signInUser, signUpUser };

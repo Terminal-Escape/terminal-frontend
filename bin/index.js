@@ -35,7 +35,7 @@ const {
   windowNums,
   emptyDesk,
 } = require('../ascii');
-const { signInUser, singUpUser } = require('../auth-utils');
+const { signInUser, signUpUser } = require('../auth-utils');
 require('dotenv').config();
 
 
@@ -47,17 +47,23 @@ async function initialPrompt() {
   // const User = await signInUser();
   let validUser = false;
   let userCookie;
-  
+  let userName;
+  let password;
+  let authType;
+  console.log('authType');
+  console.log(authType);
+  while (!validUser) {
   console.log(`Do you have a login?
   1. Yes
   2. No
-  `)
-  let authType = prompt()
+  `);
+  authType = prompt();
   if(authType === '2') {
-    const userName = prompt(chalk.italic.bgWhite.blue('Enter your Username '))
-    const password = prompt(chalk.italic.bgWhite.blue('Enter your Password '))
+    userName = prompt(chalk.italic.bgWhite.blue('Enter your Username '));
+    password = prompt(chalk.italic.bgWhite.blue('Enter your Password '));
+    authType = undefined;
     try {
-      const temp = await singUpUser(userName, password);
+      const data = await signUpUser(userName, password);
       initialPrompt();
     } catch (e) {
       console.log(chalk.bold.red(e.message));
@@ -65,12 +71,11 @@ async function initialPrompt() {
     }
   }
   if(authType === '1') {
-  while (!validUser) {
-    const Username = prompt(chalk.italic.bgWhite.blue('What is your Username? '))
+    userName = prompt(chalk.italic.bgWhite.blue('What is your Username? '))
     console.log(
-      chalk.bold.bgYellowBright.green(`Hello, ${Username}.`)
+      chalk.bold.bgYellowBright.green(`Hello, ${userName}.`)
       );
-      const password = prompt.hide("what is your password? ");
+      password = prompt.hide("what is your password? ");
     }
   try {
     userCookie = await signInUser(username, password);
@@ -78,13 +83,13 @@ async function initialPrompt() {
   } catch (e) {
     console.log(chalk.bold.red("Invalid username/password"));
   }
-  console.log(chalk.italic.bgWhite.blue(`Are you ready to begin ${Username}? `));
+}
+  console.log(chalk.italic.bgWhite.blue(`Are you ready to begin ${userName}? `));
   console.log(terminalForestCosmike);
   prompt(chalk.bgGray.green('Press any key to continue'));
   user_items = await fetchUserItem();
   items = await fetchItemsTable();
   console.log(cabin);
-}
 }
 
 
