@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const prompt = require('prompt-sync')();
 const fetch = require('cross-fetch');
 
-const { fetchRoom, fetchUserItem } = require('../fetch-utils');
+const { fetchRoom, fetchUserItem, fetchUser, createUser  } = require('../fetch-utils');
 
 const {
   cabin,
