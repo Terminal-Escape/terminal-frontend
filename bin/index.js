@@ -26,6 +26,7 @@ require('dotenv').config();
 
 
 let user_items;
+let items;
 
 async function askName() {
   // const User = await signInUser();
@@ -49,6 +50,7 @@ async function askName() {
   console.log(terminalForestCosmike);
   prompt(chalk.bgGray.green('Press any key to continue'));
   user_items = await fetchUserItem();
+  
   console.log(cabin);
 }
 
@@ -91,11 +93,10 @@ async function loadPrompts() {
         user_items[2].item_true = true;
         loadPrompts();
       } else if (deskPrompt === '2') {
-        // ASCII needed of just the journal
-         console.log(journal);
+        console.log(journal);
         console.log('You pick up and flip through the journal');
         console.log(room[0].rooms_objects);
-        console.log(room[0].items[3].item_secret // ryan placeholder
+        console.log(room[0].items[3].item_secret, // ryan placeholder
           'The final page has been ripped out but the following can be read from top to bottom on the remaining scraps of page: Doo... Co... 7'
         );
         user_items[3].item_true = true;
