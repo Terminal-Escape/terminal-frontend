@@ -26,4 +26,17 @@ async function fetchUserItem() {
   return data;
 }
 
-module.exports = { fetchRoom, fetchUserItem};
+async function fetchUser() {
+  const response = await fetchUser(`${process.env.API_URL}/api/v1/Users`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+
+    },
+  });
+  const data = await response.json();
+  return data;
+}
+
+module.exports = { fetchRoom, fetchUserItem };
