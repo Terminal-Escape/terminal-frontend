@@ -4,10 +4,8 @@ const prompt = require("prompt-sync")();
 const fetch = require("cross-fetch");
 const cookie = require("cookie");
 
-
-const { fetchRoom, fetchUserItem, fetchItemsTable } = require('../fetch-utils');
-const { signInUser, signUpUser } = require('../auth-utils');
-
+const { fetchRoom, fetchUserItem, fetchItemsTable } = require("../fetch-utils");
+const { signInUser, signUpUser } = require("../auth-utils");
 
 const {
   terminalForestBolger,
@@ -37,11 +35,8 @@ const {
   lockboxWee,
   windowNums,
   emptyDesk,
-
 } = require("../ascii");
-const { signInUser } = require("../auth-utils");
 require("dotenv").config();
-
 
 let validUser = false;
 let userCookie;
@@ -49,73 +44,70 @@ let user_items;
 let items;
 
 async function signUpPrompt() {
-  console.log(chalk.italic.bgWhite.blue('Enter your Username '))
+  console.log(chalk.italic.bgWhite.blue("Enter your Username "));
   let userName = prompt();
-  console.log(chalk.italic.bgWhite.blue('Enter your Password '))
+  console.log(chalk.italic.bgWhite.blue("Enter your Password "));
   let password = prompt();
-    try {
-      await signUpUser(userName, password);
-    } catch (e) {
-      console.log(chalk.bold.red(e.message));
-    }
+  try {
+    await signUpUser(userName, password);
+    signInPrompt();
+  } catch (e) {
+    console.log(chalk.bold.red(e.message));
+  }
 }
 
 async function signInPrompt() {
-  console.log(chalk.italic.bgWhite.blue('What is your Username? '));
+  console.log(chalk.italic.bgWhite.blue("What is your Username? "));
   let userName = prompt();
-  console.log(chalk.bold.bgYellowBright.green(`Hello, ${userName}. 
-    What is your password?`));
+  console.log(
+    chalk.bold.bgYellowBright.green(`Hello, ${userName}. 
+    What is your password?`)
+  );
   let password = prompt.hide();
-    try {
-      console.log('in the try');
-      validUser = true;
-      userCookie = await signInUser(userName, password);
-      // console.log(userCookie);
-    } catch (e) {
-      console.log('in the catch');
-      validUser = false;
-      console.log(chalk.bold.red("Invalid username/password"));
-    }
+  try {
+    console.log("in the try");
+    validUser = true;
+    userCookie = await signInUser(userName, password);
+    initialPrompt();
+  } catch (e) {
+    validUser = false;
+    console.log("in the catch");
+    console.log(chalk.bold.red("Invalid username/password"));
+    signInPrompt();
+  }
 }
 
 async function initialPrompt() {
-
-
   console.log(validUser);
   let authType;
-  if(validUser === false) {
-  console.log(`Do you have a login?
+  if (validUser === false) {
+    console.log(`Do you have a login?
   1. Yes
   2. No
   `);
-  authType = prompt();
-  if(authType === '1') {
-    signInPrompt();
-    initialPrompt();
+    authType = prompt();
+    if (authType === "1") {
+      signInPrompt();
     }
-  if(authType === '2') {
-    signUpPrompt();
-    initialPrompt();
-  }
-  } else if(validUser === true) {
+    if (authType === "2") {
+      signUpPrompt();
+    }
+  } else if (validUser === true) {
     console.log(terminalForestCosmike);
     user_items = await fetchUserItem();
-    console.log('user_items: ', user_items);
+    console.log("user_items: ", user_items);
     items = await fetchItemsTable();
-    console.log('items: ', items);
+    console.log("items: ", items);
     console.log(cabin);
     console.log(chalk.italic.bgWhite.blue(`Are you ready to begin? `));
-    prompt(chalk.bgGray.green('Press any key to continue'));
+    prompt(chalk.bgGray.green("Press any key to continue"));
     loadPrompts();
   }
-
 }
-
 
 async function loadPrompts() {
   let room = await fetchRoom();
   console.log(room[0].room_description);
-
 
   // Inventory Check
   let filtered = user_items.filter((user_item) => user_item.item_true === true);
@@ -131,7 +123,6 @@ async function loadPrompts() {
 
   console.log("Current Inventory: " + itemsList);
 
-
   console.log(`The Objects in the room are...
   1. Desk
   2. Bunk Beds
@@ -140,8 +131,7 @@ async function loadPrompts() {
   5. Door
   `);
 
-  let object = prompt('Which object would you like to investigate? ');
-
+  let object = prompt("Which object would you like to investigate? ");
 
   //DESK
   if (object === "1") {

@@ -3,38 +3,38 @@ const fetch = require("cross-fetch");
 const chalk = require("chalk");
 
 async function signUpUser(userName, password) {
-    // console.log('beforeresp');
-    const resp = await fetch(`${process.env.API_URL}/api/v1/users`, {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userName, password }),
-        credentials: "include",
-    });
-    const data = await resp.json();
-    if (!resp.ok) {
-        throw new Error(data.message);
-    }
+  console.log("beforeresp");
+  const resp = await fetch(`${process.env.API_URL}/api/v1/users`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userName, password }),
+    credentials: "include",
+  });
+  const data = await resp.json();
+  if (!resp.ok) {
+    throw new Error(data.message);
+  }
 }
 
 async function signInUser(userName, password) {
-    // console.log('userName', userName);
-    // console.log('password', password);
-    const resp = await fetch(`${process.env.API_URL}/api/v1/users/sessions`, {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userName, password }),
-        credentials: "include",
-    });
-    if (!resp.ok) {
-        throw new Error(data.message);
-    }
-    return resp.json();
+  console.log("userName", userName);
+  // console.log('password', password);
+  const resp = await fetch(`${process.env.API_URL}/api/v1/users/sessions`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userName, password }),
+    credentials: "include",
+  });
+  if (!resp.ok) {
+    throw new Error(data.message);
+  }
+  return resp.json();
 }
 
 module.exports = { signInUser, signUpUser };
