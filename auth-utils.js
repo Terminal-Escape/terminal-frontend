@@ -2,14 +2,15 @@ const fetch = require("cross-fetch");
 // const cookie = require("cookie");
 const chalk = require("chalk");
 
-async function signInUser(email, password) {
-    const resp = await fetch(`${process.env.API_URL}/api/v1/users/sessions`, {
+async function signUpUser(userName, password) {
+    // console.log('beforeresp');
+    const resp = await fetch(`${process.env.API_URL}/api/v1/users`, {
         method: "POST",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ userName, password }),
         credentials: "include",
     });
     const data = await resp.json();
@@ -18,4 +19,22 @@ async function signInUser(email, password) {
     }
 }
 
-module.exports = { signInUser };
+async function signInUser(userName, password) {
+    // console.log('userName', userName);
+    // console.log('password', password);
+    const resp = await fetch(`${process.env.API_URL}/api/v1/users/sessions`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userName, password }),
+        credentials: "include",
+    });
+    if (!resp.ok) {
+        throw new Error(data.message);
+    }
+    return resp.json();
+}
+
+module.exports = { signInUser, signUpUser };
