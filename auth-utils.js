@@ -13,11 +13,11 @@ async function signUpUser(userName, password) {
         body: JSON.stringify({ userName, password }),
         credentials: "include",
     });
-    await resp.json();
-    console.log(resp);
-    // if(!resp.ok) {
-    //     throw new Error(message);
-    // }
+
+    const data = await resp.json();
+    if (!resp.ok) {
+        throw new Error(data.message);
+    }
 }
 
 async function signInUser(userName, password) {

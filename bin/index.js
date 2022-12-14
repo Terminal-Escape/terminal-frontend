@@ -47,8 +47,8 @@ async function initialPrompt() {
   // const User = await signInUser();
   let validUser = false;
   let userCookie;
-  let userName;
-  let password;
+  // let userName;
+  // let password;
   let authType;
   while (!validUser) {
   console.log(`Do you have a login?
@@ -57,25 +57,25 @@ async function initialPrompt() {
   `);
   authType = prompt();
   if(authType === '2') {
-    userName = prompt(chalk.italic.bgWhite.blue('Enter your Username '));
-    password = prompt(chalk.italic.bgWhite.blue('Enter your Password '));
+    let userName = prompt(chalk.italic.bgWhite.blue('Enter your Username '));
+    let password = prompt(chalk.italic.bgWhite.blue('Enter your Password '));
     authType = undefined;
     try {
       console.log('before');
       await signUpUser(userName, password);
       console.log('after');
-      initialPrompt();
+      
     } catch (e) {
       console.log(chalk.bold.red(e.message));
-      initialPrompt();
     }
+    initialPrompt();
   }
   if(authType === '1') {
-    userName = prompt(chalk.italic.bgWhite.blue('What is your Username? '))
+    let userName = prompt(chalk.italic.bgWhite.blue('What is your Username? '))
     console.log(
       chalk.bold.bgYellowBright.green(`Hello, ${userName}.`)
       );
-      password = prompt.hide("what is your password? ");
+      let password = prompt.hide("what is your password? ");
     }
   try {
     userCookie = await signInUser(userName, password);
