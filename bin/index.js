@@ -4,9 +4,11 @@ const prompt = require('prompt-sync')();
 const fetch = require('cross-fetch');
 const cookie = require('cookie');
 
-const { fetchRoom, fetchUserItem } = require('../fetch-utils');
+const { fetchRoom, fetchUserItem, fetchItemsTable } = require('../fetch-utils');
 
 const {
+  terminalForestBolger,
+  terminalForestCosmike,
   cabin,
   lockbox,
   window,
@@ -14,11 +16,24 @@ const {
   deskLampJournal,
   bunkbeds,
   keypadNums,
-  terminalForestCosmike,
-  keyItem,
-  bunkbeds2,
+  cabinAsciiSm,
   cabin50Col,
+  bunkbeds2,
+  keyItem,
+  doorAndPadSm,
+  skyrim,
+  lantern,
+  journal,
+  deskLampJournalSm,
+  deskBoth,
+  deskJournal,
+  deskLantern,
   lanternSm,
+  paperNums,
+  lockboxSm,
+  lockboxWee,
+  windowNums,
+  emptyDesk,
 } = require('../ascii');
 const { signInUser } = require('../auth-utils');
 require('dotenv').config();
@@ -28,7 +43,7 @@ require('dotenv').config();
 let user_items;
 let items;
 
-async function askName() {
+async function initialPrompt() {
   // const User = await signInUser();
   let validUser = false;
   
@@ -50,7 +65,7 @@ async function askName() {
   console.log(terminalForestCosmike);
   prompt(chalk.bgGray.green('Press any key to continue'));
   user_items = await fetchUserItem();
-  
+  items = await fetchItemsTable();
   console.log(cabin);
 }
 
@@ -59,7 +74,7 @@ async function loadPrompts() {
 
   console.log(room[0].room_description);
   
-  // Inventory Check
+  // Temp Inventory Check
   console.log(user_items);
 
   console.log(`The Objects in the room are...
@@ -72,36 +87,39 @@ async function loadPrompts() {
 
   let object = prompt('Which object would you like to investigate? ');
   
+
+  //DESK
   if (object === '1') {
     if (
-      user_items[2].item_true === false &&
-      user_items[3].item_true === false
+      user_items[2].item_true === false && //Lantern
+      user_items[3].item_true === false //Journal
     ) {
+      // Desk with lantern and Journal
       console.log(deskLampJournal);
-      console.log(room[0].rooms_objects[0].object_description);
+      console.log(room[0].rooms_objects[0].object_description); 
+      //asks user for which to investigate. 
       console.log(`Which do you wish to investigate?
       1. Lantern
       2. Journal
       `);
 
       let deskPrompt = prompt();
-
+      //user investigates lantern
       if (deskPrompt === '1') {
-        // ASCII of the lantern
         console.log(lanternSm);
         console.log('You pick up the lantern.');
         user_items[2].item_true = true;
+        prompt(chalk.bgGray.green('Press any key to continue'));
         loadPrompts();
       } else if (deskPrompt === '2') {
         console.log(journal);
         console.log('You pick up and flip through the journal');
-        console.log(room[0].rooms_objects);
-        console.log(room[0].items[3].item_secret, // ryan placeholder
-          'The final page has been ripped out but the following can be read from top to bottom on the remaining scraps of page: Doo... Co... 7'
-        );
+        console.log(items[3].item_description);
+        console.log(items[3].item_secret);
         user_items[3].item_true = true;
         console.log(emptyDesk);
         console.log(user_items[3].item_true);
+        prompt(chalk.bgGray.green('Press any key to continue'));
         loadPrompts();
       }
     } else if (
@@ -110,9 +128,10 @@ async function loadPrompts() {
     ) {
       console.log(room[0].rooms_objects[0].object_secret_one);
       console.log('You pick up and flip through the journal');
-      console.log('A worn leather bound journal.');
+      console.log(items[3].item_description);
       console.log();
       user_items[3].item_true = true;
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     } else if (
       user_items[2].item_true === false &&
@@ -121,35 +140,44 @@ async function loadPrompts() {
       console.log(room[0].rooms_objects[0].object_secret_two);
       console.log('You pick up the lantern.');
       user_items[2].item_true = true;
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     } else if (
       user_items[2].item_true === true &&
       user_items[3].item_true === true
     ) {
       console.log(room[0].rooms_objects[0].object_secret_three);
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     }
     // user will be prompted to investigate the lamp or the journal.
     console.log(deskLampJournal);
-
+  
+  
+    //BUNK BEDS
   } else if (object === '2') {
     if (user_items[0].item_true === false) {
       console.log(room[0].rooms_objects[1].object_description);
       user_items[0].item_true = true;
       console.log(keyItem);
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     } else if (user_items[0].item_true === true) {
       console.log(bunkbeds2);
       console.log(room[0].rooms_objects[1].object_secret_one);
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     }
 
+
+ //LOCK BOX
   } else if (object === '3') {
     if (
       user_items[0].item_true === false &&
       user_items[1].item_true === false
     ) {
       console.log(room[0].rooms_objects[2].object_description);
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     } else if (
       user_items[0].item_true === true &&
@@ -157,6 +185,7 @@ async function loadPrompts() {
     ) {
       console.log(room[0].rooms_objects[2].object_secret_one);
       user_items[1].item_true = true;
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
       console.log(lockbox);
     } else if (
@@ -164,22 +193,29 @@ async function loadPrompts() {
       user_items[1].item_true === true
     ) {
       console.log(room[0].rooms_objects[2].objects_secret_two);
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     }
 
+
+    //WINDOW
   } else if (object === '4') {
     if (user_items[2].item_true === false) {
       console.log(window);
       console.log(room[0].rooms_objects[3].object_description);
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     } else if (user_items[2].item_true === true) {
       // ASCII needed of window with '4, 2, 6'
-      // console.log(windowText);
+      console.log(windowText);
       console.log(window);
       console.log(room[0].rooms_objects[3].object_secret_one);
+      prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     }
     
+
+    //DOOR
   } else if (object === '5') {
     console.log(room[0].rooms_objects[4].object_description);
     console.log(doorAndPad);
@@ -188,6 +224,7 @@ async function loadPrompts() {
     console.log(user_items[2].item_true);
     console.log(user_items[3].item_true);
     console.log(user_items[4].item_true);
+    
     if (
       user_items[1].item_true === true &&
       user_items[3].item_true === true &&
@@ -229,5 +266,5 @@ async function loadPrompts() {
   }
 }
 
-askName();
+initialPrompt();
 loadPrompts();
