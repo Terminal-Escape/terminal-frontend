@@ -50,8 +50,6 @@ async function initialPrompt() {
   let userName;
   let password;
   let authType;
-  console.log('authType');
-  console.log(authType);
   while (!validUser) {
   console.log(`Do you have a login?
   1. Yes
@@ -63,7 +61,9 @@ async function initialPrompt() {
     password = prompt(chalk.italic.bgWhite.blue('Enter your Password '));
     authType = undefined;
     try {
-      const data = await signUpUser(userName, password);
+      console.log('before');
+      await signUpUser(userName, password);
+      console.log('after');
       initialPrompt();
     } catch (e) {
       console.log(chalk.bold.red(e.message));
@@ -78,7 +78,7 @@ async function initialPrompt() {
       password = prompt.hide("what is your password? ");
     }
   try {
-    userCookie = await signInUser(username, password);
+    userCookie = await signInUser(userName, password);
     validUser = true;
   } catch (e) {
     console.log(chalk.bold.red("Invalid username/password"));
