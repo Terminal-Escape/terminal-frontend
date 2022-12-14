@@ -2,6 +2,7 @@
 const chalk = require('chalk');
 const prompt = require('prompt-sync')();
 const fetch = require('cross-fetch');
+const cookie = require('cookie');
 
 const { fetchRoom, fetchUserItem } = require('../fetch-utils');
 
@@ -34,11 +35,15 @@ require('dotenv').config();
 //   prompt(chalk.bgGray.green('Press any key to start your escape!'));
 //   console.log(chalk.bold.bgBlueBright.magenta('You find yourself in a lonely cabin in a lonely wood'));
 let user_items;
-
+// once we have a user, attach user_items call to the user so when they sign in
+// it pulls in the user_items table to track game state (user_items booleans)
+//      user_items should be a property of the user object
+//      join user + user_items in sql on game start
+//      when game stops, state is updated on backend w/put call
 async function askName() {
   // const User = await signInUser();
   let validUser = false;
-
+  let userCookie;
   while (!validUser) {
     const Username = prompt(chalk.italic.bgWhite.blue('What is your Username? '))
     // const name = prompt(chalk.italic.bgWhite.blue('What is your name? '));
@@ -49,6 +54,7 @@ async function askName() {
     }
   try {
     validUser = true;
+    userCookie = await signInUser(username, password);
   } catch (e) {
     console.log(chalk.bold.red("Invalid username/password"));
   }
