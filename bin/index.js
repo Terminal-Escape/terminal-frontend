@@ -97,7 +97,7 @@ async function loadPrompts() {
   `);
 
   let object = prompt("Which object would you like to investigate? ");
-
+  console.log('items: ', items);
   //DESK
   if (object === "1") {
     if (
@@ -136,6 +136,7 @@ async function loadPrompts() {
       user_items[2].item_true === true &&
       user_items[3].item_true === false
     ) {
+      console.log(deskLantern);
       console.log(room[0].rooms_objects[0].object_secret_one);
       console.log("You pick up and flip through the journal");
       console.log(items[3].item_description);
@@ -147,6 +148,7 @@ async function loadPrompts() {
       user_items[2].item_true === false &&
       user_items[3].item_true === true
     ) {
+      console.log(deskJournal);
       console.log(room[0].rooms_objects[0].object_secret_two);
       console.log("You pick up the lantern.");
       user_items[2].item_true = true;
@@ -156,6 +158,7 @@ async function loadPrompts() {
       user_items[2].item_true === true &&
       user_items[3].item_true === true
     ) {
+      console.log(emptyDesk);
       console.log(room[0].rooms_objects[0].object_secret_three);
       prompt(chalk.bgGray.green("Press any key to continue"));
       loadPrompts();
@@ -166,9 +169,9 @@ async function loadPrompts() {
     //BUNK BEDS
   } else if (object === "2") {
     if (user_items[0].item_true === false) {
+      console.log(keyItem);
       console.log(room[0].rooms_objects[1].object_description);
       user_items[0].item_true = true;
-      console.log(keyItem);
       prompt(chalk.bgGray.green("Press any key to continue"));
       loadPrompts();
     } else if (user_items[0].item_true === true) {
@@ -184,6 +187,7 @@ async function loadPrompts() {
       user_items[0].item_true === false &&
       user_items[1].item_true === false
     ) {
+      console.log(lockboxWee);
       console.log(room[0].rooms_objects[2].object_description);
       prompt(chalk.bgGray.green("Press any key to continue"));
       loadPrompts();
@@ -191,15 +195,16 @@ async function loadPrompts() {
       user_items[0].item_true === true &&
       user_items[1].item_true === false
     ) {
+      console.log(paperNums);
       console.log(room[0].rooms_objects[2].object_secret_one);
       user_items[1].item_true = true;
       prompt(chalk.bgGray.green("Press any key to continue"));
       loadPrompts();
-      console.log(lockbox);
     } else if (
-      user_item[0].item_true === true &&
+      user_items[0].item_true === true &&
       user_items[1].item_true === true
     ) {
+      console.log(lockboxSm);
       console.log(room[0].rooms_objects[2].objects_secret_two);
       prompt(chalk.bgGray.green("Press any key to continue"));
       loadPrompts();
@@ -214,8 +219,8 @@ async function loadPrompts() {
       loadPrompts();
     } else if (user_items[2].item_true === true) {
       // ASCII needed of window with '4, 2, 6'
-      console.log(windowText);
-      console.log(window);
+      console.log(windowNums);
+      // console.log(window);
       console.log(room[0].rooms_objects[3].object_secret_one);
       prompt(chalk.bgGray.green("Press any key to continue"));
       loadPrompts();
@@ -223,8 +228,8 @@ async function loadPrompts() {
 
     //DOOR
   } else if (object === "5") {
-    console.log(room[0].rooms_objects[4].object_description);
     console.log(doorAndPad);
+    console.log(room[0].rooms_objects[4].object_description);
     console.log(user_items[0].item_true);
     console.log(user_items[1].item_true);
     console.log(user_items[2].item_true);
