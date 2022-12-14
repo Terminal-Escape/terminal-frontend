@@ -16,6 +16,7 @@ const {
   terminalForestCosmike,
   keyItem,
   bunkbeds2,
+  cabin50Col,
 } = require('../ascii');
 require('dotenv').config();
 
@@ -42,7 +43,6 @@ async function askName() {
   prompt(chalk.bgGray.green('Press any key to continue'));
   user_items = await fetchUserItem();
   console.log(cabin);
-
 }
 
 async function loadPrompts() {
@@ -203,11 +203,16 @@ async function loadPrompts() {
         //    2. Path
         // ');
         //  if (continue === '1') {
-        //    console.log(skyrimCart);  
-        //    console.log(`Ralof: "Hey you, ${name} you\'re finally awake"`);  
+        //    console.log(skyrimCart);
+        //    console.log(`Ralof: "Hey you, ${name} you\'re finally awake"`);
         //  } else if (continue === '2') {
         //    console.log('some other ending || option for another room');
         //  }
+      } else if (doorPrompt === '426513') {
+        console.log(skyrimCart);
+        console.log(
+          'Hey, you. You’re finally awake. You were trying to cross the border, right? Walked right into that Imperial ambush, same as us, and that thief over there.'
+        );
       } else {
         console.log('Incorrect code entered');
         loadPrompts();
