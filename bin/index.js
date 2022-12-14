@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const prompt = require('prompt-sync')();
 const fetch = require('cross-fetch');
 
-const { fetchRoom, fetchUserItem, fetchUser, createUser  } = require('../fetch-utils');
+const { fetchRoom, fetchUserItem } = require('../fetch-utils');
 
 const {
   cabin,
@@ -18,6 +18,7 @@ const {
   bunkbeds2,
   cabin50Col,
 } = require('../ascii');
+const { signInUser } = require('../auth-utils');
 require('dotenv').config();
 
 // prompt to enter name
@@ -35,10 +36,23 @@ require('dotenv').config();
 let user_items;
 
 async function askName() {
-  const name = prompt(chalk.italic.bgWhite.blue('What is your name? '));
-  console.log(
-    chalk.bold.bgYellowBright.green(`Hello, ${name}. Are you ready to begin?`)
-  );
+  // const User = await signInUser();
+  let validUser = false;
+
+  while (!validUser) {
+    const Username = prompt(chalk.italic.bgWhite.blue('What is your Username? '))
+    // const name = prompt(chalk.italic.bgWhite.blue('What is your name? '));
+    console.log(
+      chalk.bold.bgYellowBright.green(`Hello, ${Username}.`)
+      );
+      const password = prompt.hide("what is your password? ");
+    }
+  try {
+    validUser = true;
+  } catch (e) {
+    console.log(chalk.bold.red("Invalid username/password"));
+  }
+  console.log(chalk.italic.bgWhite.blue(`Are you ready to begin ${Username}? `));
   console.log(terminalForestCosmike);
   prompt(chalk.bgGray.green('Press any key to continue'));
   user_items = await fetchUserItem();
