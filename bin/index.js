@@ -146,7 +146,7 @@ async function loadPrompts() {
   console.log(`The Objects in the room are...
   1. Desk
   2. Bunk Beds
-  3. A Small metal Lock Box
+  3. A small metal lock box
   4. Window
   5. Door
   `);
