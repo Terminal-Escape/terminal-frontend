@@ -66,8 +66,8 @@ async function signInPrompt() {
   console.log(`
     ================================
 
-    Hello, ${chalk.bold.bgYellowBright.green(`${userName}`)} . 
-    What is your password?
+      Hello, ${chalk.bold.bgYellowBright.green(`${userName}`)} . 
+          What is your password?
     
     ================================
     `);
@@ -97,7 +97,6 @@ async function initialPrompt() {
 
           2. No
 
-
     ================================
   `);
     authType = prompt();
@@ -115,7 +114,13 @@ async function initialPrompt() {
     // console.log('items: ', items);
     await pause();
     await shortPause();
-    console.log(chalk.italic.bgWhite.blue(`Are you ready to begin? `));
+    console.log(`
+      ================================
+
+      ${chalk.italic.bgWhite.blue(`Are you ready to begin? `)}`);
+      console.log(`
+      ================================
+      `)
     await shortPause();
     prompt(chalk.bgGray.green('Press enter to continue'));
     console.log(cabin);
