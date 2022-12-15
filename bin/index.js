@@ -271,7 +271,7 @@ async function loadPrompts() {
     ) {
       console.log(lockboxSm);
       await pause();
-      console.log(room[0].rooms_objects[2].objects_secret_two);
+      console.log(room[0].rooms_objects[2].object_secret_two);
       prompt(chalk.bgGray.green('Press any key to continue'));
       loadPrompts();
     }
