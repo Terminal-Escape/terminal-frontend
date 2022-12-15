@@ -151,6 +151,99 @@ async function initialPrompt() {
   }
 }
 
+async function loadDevs() {
+  // thomas
+  console.log(thomas);
+  await shortPause();
+  console.log(chalk.hex('#b100cd').bold('Thomas Jenkins'));
+  await pause();
+  console.log(`                     `);
+  console.log(
+    chalk.green.bold(
+      'Thomas is a battle-hardened warrior from the line of Durin of the Dwarves of Erebor. He believes the greatest treasure are the friends we made along the journey.'
+    )
+  );
+  await pause();
+  console.log(`                     `);
+  console.log(
+    chalk.blue('Linkedin: https://www.linkedin.com/in/thomas-p-jenkins/>')
+  );
+  await shortPause();
+  console.log(`                     `);
+  console.log(chalk.blue('GitHub: https://github.com/Thomas-Jenkins'));
+  console.log(`                     `);
+  await pause();
+
+  // sam
+  console.log(sam);
+  await shortPause();
+  console.log(chalk.hex('#b100cd').bold('Sam Adams'));
+  await pause();
+  console.log(`                     `);
+  console.log(
+    chalk.green.bold(
+      "Sam is an enigmatic figure from parts unknown. Whispers speak of his mastery of digital alchemy, and he is said to have the secret of the Developer's Stone."
+    )
+  );
+  await pause();
+  console.log(`                     `);
+  console.log(chalk.blue('Linkedin: https://www.linkedin.com/in/samsadams/'));
+  await shortPause();
+  console.log(`                     `);
+  console.log(chalk.blue('GitHub: https://github.com/soup1e'));
+  console.log(`                     `);
+  await pause();
+
+  // charlie
+  console.log(charlie);
+  await shortPause();
+  console.log(chalk.hex('#b100cd').bold('Charles Crabtree'));
+  await pause();
+  console.log(`                     `);
+  console.log(
+    chalk.green.bold(
+      "Charlie is a man with a cabin. Legend holds that he hunts by convincing animals to walk into traps. Some say he's still out there, somewhere. Waiting..."
+    )
+  );
+  await pause();
+  console.log(`                     `);
+  console.log(
+    chalk.blue('Linkedin: https://www.linkedin.com/in/charles-crabtree/')
+  );
+  await shortPause();
+  console.log(`                     `);
+  console.log(chalk.blue('Github: https://github.com/charlescrabtree'));
+  console.log(`                     `);
+  await pause();
+
+  // ryan
+  console.log(ryan);
+  await shortPause();
+  console.log(chalk.hex('#b100cd').bold('Ryan Parker'));
+  await pause();
+  console.log(`                     `);
+  console.log(
+    chalk.green.bold(
+      "Ryan is said to conjure images before one's eyes, coaxing specters from the shadows, bending the very fabric of reality. Ooh, pretty colors!"
+    )
+  );
+  await pause();
+  console.log(`                     `);
+  console.log(
+    chalk.blue('Linkedin: https://www.linkedin.com/in/ryanparkerdev/')
+  );
+  await shortPause();
+  console.log(`                     `);
+  console.log(chalk.blue('GitHub: https://github.com/ryan-j-parker'));
+  console.log(`                     `);
+  await pause();
+
+  // pressing enter runs the game again
+  prompt(chalk.bgYellow.blue('Press enter to play again'));
+  console.log(`                     `);
+  loadPrompts();
+}
+
 async function loadPrompts() {
   let room = await fetchRoom();
   console.log(room[0].room_description);
@@ -444,58 +537,7 @@ async function loadPrompts() {
         if (devs === '1') {
           initialPrompt();
         } else if (devs === '2') {
-          console.log(thomas);
-          console.log(chalk.hex('#b100cd').bold('Thomas Jenkins'));
-          console.log(`                     `);
-          console.log(`
-          Thomas is a battle-hardened warrior from the line of Durin of the Dwarves of Erebor. He believes the greatest treasure are the friends we made along the journey.
-
-          Thomas is a full-stack developer from Reno, NV, and a master of cannabis cultivation.
-          `
-          );
-          await pause();
-          console.log(
-            'Linkedin: https://www.linkedin.com/in/thomas-p-jenkins/'
-          );
-          console.log('GitHub: https://github.com/Thomas-Jenkins');
-          await pause();
-          console.log(sam);
-          console.log(chalk.hex('#b100cd').bold('Sam Adams'));
-          console.log(`                     `);
-          console.log(`
-          Sam is an enigmatic figure from parts unknown. Whispers speak of his mastery of digital alchemy, and he is said to have the secret of the Developer\'s Stone.
-          
-          Sam is a full-stack developer from Ridgefield
-          `);
-          await pause();
-          console.log('Linkedin: https://www.linkedin.com/in/samsadams/');
-          console.log('GitHub: https://github.com/soup1e');
-          await pause();
-          console.log(charlie);
-          console.log(chalk.hex('#b100cd').bold('Charlie Crabtree'));
-          console.log(`                     `);
-          console.log(`
-          Charlie is a man with a cabin. Legend holds that he hunts by convincing animals to walk into traps. Some say he\'s still out there, somewhere. Waiting...
-          
-          Charlie is a full-stack developer and plays the French Horn for the Vancouver Symphony Orchestra. He has lived and studied in Europe, and uses his fluency in Italian for both good and evil.
-          `);
-          await pause();
-          console.log(
-            'Linkedin: https://www.linkedin.com/in/charles-crabtree/'
-          );
-          console.log('Github: https://github.com/charlescrabtree');
-          await pause();
-          console.log(ryan);
-          console.log(chalk.hex('#b100cd').bold('Ryan Parker'));
-          console.log(`                     `);
-          console.log(`
-          Ryan is known to conjure images before one\'s eyes, coaxing specters from the shadows, bending the very fabric of reality. Ooh, pretty colors!
-          
-          Ryan is a trained archaeologist turned full-stack developer with a special interest in 3D UI. His second home is in San Marcos la Laguna in the highlands of Guatemala.
-          `);
-          await pause();
-          console.log('Linkedin: https://www.linkedin.com/in/ryanparkerdev/');
-          console.log('GitHub: https://github.com/ryan-j-parker');
+          loadDevs();
         }
         prompt('Play again?');
         initialPrompt();
@@ -529,45 +571,7 @@ async function loadPrompts() {
           if (devs === '1') {
             initialPrompt();
           } else if (devs === '2') {
-            console.log(thomas);
-            console.log(`                     `);
-            console.log(
-              'Thomas is a battle-hardened warrior from the line of Durin of the Dwarves of Erebor. He believes the greatest treasure are the friends we made along the journey.'
-            );
-            await pause();
-            console.log(
-              'Linkedin: https://www.linkedin.com/in/thomas-p-jenkins/>'
-            );
-            console.log('GitHub: https://github.com/Thomas-Jenkins');
-            await pause();
-            console.log(sam);
-            console.log(`                     `);
-            console.log(
-              "Sam is an enigmatic figure from parts unknown. Whispers speak of his mastery of digital alchemy, and he is said to have the secret of the Developer's Stone."
-            );
-            await pause();
-            console.log('Linkedin: https://www.linkedin.com/in/samsadams/');
-            console.log('GitHub: https://github.com/soup1e');
-            await pause();
-            console.log(charlie);
-            console.log(`                     `);
-            console.log(
-              "Charlie is a man with a cabin. Legend holds that he hunts by convincing animals to walk into traps. Some say he's still out there, somewhere. Waiting..."
-            );
-            await pause();
-            console.log(
-              'Linkedin: https://www.linkedin.com/in/charles-crabtree/'
-            );
-            console.log('Github: https://github.com/charlescrabtree');
-            await pause();
-            console.log(ryan);
-            console.log(`                     `);
-            console.log(
-              "Ryan is said to conjure images before one's eyes, coaxing specters from the shadows, bending the very fabric of reality. Ooh, pretty colors!"
-            );
-            await pause();
-            console.log('Linkedin: https://www.linkedin.com/in/ryanparkerdev/');
-            console.log('GitHub: https://github.com/ryan-j-parker');
+            loadDevs();
           }
           prompt('Play again?');
           initialPrompt();
