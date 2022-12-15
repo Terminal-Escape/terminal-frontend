@@ -455,7 +455,7 @@ async function loadPrompts() {
       console.log(`                     `);
 
       await pause();
-      console.log(chalk.blue(room[0].rooms_objects[2].objects_secret_two));
+      console.log(chalk.blue(room[0].rooms_objects[2].object_secret_two));
       console.log(`                     `);
       await shortPause();
       prompt(chalk.bgGray.green('Press enter to continue'));
@@ -521,7 +521,6 @@ async function loadPrompts() {
       const doorPrompt = prompt('Enter code to open door ');
       console.log(`                     `);
       if (doorPrompt === '513426') {
-        // ASCII needed of outdoor freedom scene
         console.log(freedom);
         console.log(
           `                                                          `
@@ -542,17 +541,7 @@ async function loadPrompts() {
         }
         prompt('Play again?');
         initialPrompt();
-        // const continue = prompt('
-        //    Do you wish to travel to the border, or continue to the path?
-        //    1. Border
-        //    2. Path
-        // ');
-        //  if (continue === '1') {
-        //    console.log(skyrimCart);
-        //    console.log(`Ralof: "Hey you, ${name} you\'re finally awake"`);
-        //  } else if (continue === '2') {
-        //    console.log('some other ending || option for another room');
-        //  }
+       
       } else if (doorPrompt === '426513') {
         console.log(skyrim);
         console.log(
@@ -584,7 +573,7 @@ async function loadPrompts() {
         loadPrompts();
       }
     } else {
-      // console.log(room[0].rooms_objects[4].object_description);
+      
       console.log(`                     `);
 
       loadPrompts();
