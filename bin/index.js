@@ -66,8 +66,8 @@ async function signInPrompt() {
   console.log(`
     ================================
 
-    Hello, ${chalk.bold.bgYellowBright.green(`${userName}`)} . 
-    What is your password?
+      Hello, ${chalk.bold.bgYellowBright.green(`${userName}`)} . 
+          What is your password?
     
     ================================
     `);
@@ -85,7 +85,6 @@ async function signInPrompt() {
 }
 
 async function initialPrompt() {
-  console.log(validUser);
   let authType;
   if (validUser === false) {
     await pause();
@@ -97,7 +96,6 @@ async function initialPrompt() {
           1. Yes
 
           2. No
-
 
     ================================
   `);
@@ -116,9 +114,15 @@ async function initialPrompt() {
     // console.log('items: ', items);
     await pause();
     await shortPause();
-    console.log(chalk.italic.bgWhite.blue(`Are you ready to begin? `));
+    console.log(`
+      ================================
+
+      ${chalk.italic.bgWhite.blue(`Are you ready to begin? `)}`);
+      console.log(`
+      ================================
+      `)
     await shortPause();
-    prompt(chalk.bgGray.green('Press any key to continue'));
+    prompt(chalk.bgGray.green('Press enter to continue'));
     console.log(cabin);
     await pause();
     loadPrompts();
@@ -146,7 +150,7 @@ async function loadPrompts() {
   console.log(`The Objects in the room are...
   1. Desk
   2. Bunk Beds
-  3. A Small metal Lock Box
+  3. A small metal lock box
   4. Window
   5. Door
   `);
@@ -176,7 +180,7 @@ async function loadPrompts() {
         await pause();
         console.log('You pick up the lantern.');
         user_items[2].item_true = true;
-        prompt(chalk.bgGray.green('Press any key to continue'));
+        prompt(chalk.bgGray.green('Press enter to continue'));
         loadPrompts();
       } else if (deskPrompt === '2') {
         console.log(journal);
@@ -186,8 +190,8 @@ async function loadPrompts() {
         console.log(items[3].item_secret);
         user_items[3].item_true = true;
         // console.log(emptyDesk);
-        console.log(user_items[3].item_true);
-        prompt(chalk.bgGray.green('Press any key to continue'));
+        // console.log(user_items[3].item_true);
+        prompt(chalk.bgGray.green('Press enter to continue'));
         loadPrompts();
       }
     } else if (
@@ -199,9 +203,8 @@ async function loadPrompts() {
       console.log(room[0].rooms_objects[0].object_secret_one);
       console.log('You pick up and flip through the journal');
       console.log(items[3].item_description);
-      console.log();
       user_items[3].item_true = true;
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     } else if (
       user_items[2].item_true === false &&
@@ -212,7 +215,7 @@ async function loadPrompts() {
       console.log(room[0].rooms_objects[0].object_secret_two);
       console.log('You pick up the lantern.');
       user_items[2].item_true = true;
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     } else if (
       user_items[2].item_true === true &&
@@ -221,7 +224,7 @@ async function loadPrompts() {
       console.log(emptyDesk);
       await pause();
       console.log(room[0].rooms_objects[0].object_secret_three);
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     }
     // user will be prompted to investigate the lamp or the journal.
@@ -234,13 +237,13 @@ async function loadPrompts() {
       await pause();
       console.log(room[0].rooms_objects[1].object_description);
       user_items[0].item_true = true;
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     } else if (user_items[0].item_true === true) {
       console.log(bunkbeds2);
       await pause();
       console.log(room[0].rooms_objects[1].object_secret_one);
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     }
 
@@ -253,7 +256,7 @@ async function loadPrompts() {
       console.log(lockboxWee);
       await pause();
       console.log(room[0].rooms_objects[2].object_description);
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     } else if (
       user_items[0].item_true === true &&
@@ -263,7 +266,7 @@ async function loadPrompts() {
       await pause();
       console.log(room[0].rooms_objects[2].object_secret_one);
       user_items[1].item_true = true;
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     } else if (
       user_items[0].item_true === true &&
@@ -271,8 +274,8 @@ async function loadPrompts() {
     ) {
       console.log(lockboxSm);
       await pause();
-      console.log(room[0].rooms_objects[2].objects_secret_two);
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      console.log(room[0].rooms_objects[2].object_secret_two);
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     }
 
@@ -283,7 +286,7 @@ async function loadPrompts() {
       await pause();
       console.log(room[0].rooms_objects[3].object_description);
       await pause();
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     } else if (user_items[2].item_true === true) {
       // ASCII needed of window with '4, 2, 6'
@@ -292,7 +295,7 @@ async function loadPrompts() {
       // console.log(window);
       console.log(room[0].rooms_objects[3].object_secret_one);
       await pause();
-      prompt(chalk.bgGray.green('Press any key to continue'));
+      prompt(chalk.bgGray.green('Press enter to continue'));
       loadPrompts();
     }
 
