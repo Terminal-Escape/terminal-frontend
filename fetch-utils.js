@@ -1,7 +1,7 @@
 const fetch = require("cross-fetch");
 
 async function fetchRoom() {
-  const response = await fetch(`${process.env.API_URL}/api/v1/roomOne`, {
+  const response = await fetch(`${process.env.API_URL}/api/v1/rooms`, {
     method: "GET",
     headers: {
       Accept: "application/json",

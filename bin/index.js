@@ -229,11 +229,11 @@ async function loadPrompts() {
         );
 
         console.log(items[3].item_description);
+        console.log(items[3].item_secret);
         console.log(
           `                                                          `
         );
 
-        console.log(items[3].item_secret);
         user_items[3].item_true = true;
         // console.log(emptyDesk);
         console.log(user_items[3].item_true);
