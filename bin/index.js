@@ -35,6 +35,7 @@ const {
   lockboxWee,
   windowNums,
   emptyDesk,
+  freedom,
 } = require('../ascii');
 require('dotenv').config();
 
@@ -317,6 +318,7 @@ async function loadPrompts() {
       const doorPrompt = prompt('Enter code to open door ');
       if (doorPrompt === '513426') {
         // ASCII needed of outdoor freedom scene
+        console.log(freedom);
         console.log(room[0].rooms_objects[4].object_secret_one);
         // const continue = prompt('
         //    Do you wish to travel to the border, or continue to the path?
