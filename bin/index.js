@@ -239,9 +239,9 @@ async function loadDevs() {
   await pause();
 
   // pressing enter runs the game again
-  prompt(chalk.bgYellow.blue('Press enter to play again'));
-  console.log(`                     `);
-  loadPrompts();
+//   prompt(chalk.bgYellow.blue('Press enter to play again'));
+//   console.log(`                     `);
+//   loadPrompts();
 }
 
 async function loadPrompts() {
@@ -347,6 +347,7 @@ async function loadPrompts() {
       console.log(room[0].rooms_objects[0].object_secret_one);
       console.log(chalk.yellow.bold('You pick up and flip through the journal'));
       console.log(items[3].item_description);
+      console.log(items[3].item_secret);
       user_items[3].item_true = true;
       console.log(`                     `);
       await shortPause();
@@ -537,7 +538,7 @@ async function loadPrompts() {
         if (devs === '1') {
           initialPrompt();
         } else if (devs === '2') {
-          loadDevs();
+          await loadDevs();
         }
         prompt('Play again?');
         initialPrompt();
@@ -561,17 +562,17 @@ async function loadPrompts() {
         await pause();
         console.log(chalk.hex('#b100cd').bold('Hey, you. You’re finally awake. You were trying to cross the border, right? Walked right into that Imperial ambush, same as us, and that thief over there.'));
           await pause();
+          console.log(chalk.bgGray.green(`
+        What would you like to do now?
+        1. Play again
+        2. About the developers
+        `));
           const devs = prompt(
-            chalk.bgGray.green(`
-          What would you like to do now?
-          1. Play again
-          2. About the developers
-          `)
           );
           if (devs === '1') {
             initialPrompt();
           } else if (devs === '2') {
-            loadDevs();
+            await loadDevs();
           }
           prompt('Play again?');
           initialPrompt();
