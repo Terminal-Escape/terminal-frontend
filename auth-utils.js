@@ -20,8 +20,6 @@ async function signUpUser(userName, password) {
 }
 
 async function signInUser(userName, password) {
-  console.log("userName", userName);
-  // console.log('password', password);
   const resp = await fetch(`${process.env.API_URL}/api/v1/users/sessions`, {
     method: "POST",
     headers: {
