@@ -239,9 +239,9 @@ async function loadDevs() {
   await pause();
 
   // pressing enter runs the game again
-  prompt(chalk.bgYellow.blue('Press enter to play again'));
-  console.log(`                     `);
-  loadPrompts();
+//   prompt(chalk.bgYellow.blue('Press enter to play again'));
+//   console.log(`                     `);
+//   loadPrompts();
 }
 
 async function loadPrompts() {
@@ -347,6 +347,7 @@ async function loadPrompts() {
       console.log(room[0].rooms_objects[0].object_secret_one);
       console.log(chalk.yellow.bold('You pick up and flip through the journal'));
       console.log(items[3].item_description);
+      console.log(items[3].item_secret);
       user_items[3].item_true = true;
       console.log(`                     `);
       await shortPause();
@@ -454,7 +455,7 @@ async function loadPrompts() {
       console.log(`                     `);
 
       await pause();
-      console.log(chalk.blue(room[0].rooms_objects[2].objects_secret_two));
+      console.log(chalk.blue(room[0].rooms_objects[2].object_secret_two));
       console.log(`                     `);
       await shortPause();
       prompt(chalk.bgGray.green('Press enter to continue'));
@@ -520,7 +521,6 @@ async function loadPrompts() {
       const doorPrompt = prompt('Enter code to open door ');
       console.log(`                     `);
       if (doorPrompt === '513426') {
-        // ASCII needed of outdoor freedom scene
         console.log(freedom);
         console.log(
           `                                                          `
@@ -537,21 +537,11 @@ async function loadPrompts() {
         if (devs === '1') {
           initialPrompt();
         } else if (devs === '2') {
-          loadDevs();
+          await loadDevs();
         }
         prompt('Play again?');
         initialPrompt();
-        // const continue = prompt('
-        //    Do you wish to travel to the border, or continue to the path?
-        //    1. Border
-        //    2. Path
-        // ');
-        //  if (continue === '1') {
-        //    console.log(skyrimCart);
-        //    console.log(`Ralof: "Hey you, ${name} you\'re finally awake"`);
-        //  } else if (continue === '2') {
-        //    console.log('some other ending || option for another room');
-        //  }
+       
       } else if (doorPrompt === '426513') {
         console.log(skyrim);
         console.log(
@@ -561,17 +551,17 @@ async function loadPrompts() {
         await pause();
         console.log(chalk.hex('#b100cd').bold('Hey, you. You’re finally awake. You were trying to cross the border, right? Walked right into that Imperial ambush, same as us, and that thief over there.'));
           await pause();
+          console.log(chalk.bgGray.green(`
+        What would you like to do now?
+        1. Play again
+        2. About the developers
+        `));
           const devs = prompt(
-            chalk.bgGray.green(`
-          What would you like to do now?
-          1. Play again
-          2. About the developers
-          `)
           );
           if (devs === '1') {
             initialPrompt();
           } else if (devs === '2') {
-            loadDevs();
+            await loadDevs();
           }
           prompt('Play again?');
           initialPrompt();
@@ -583,7 +573,7 @@ async function loadPrompts() {
         loadPrompts();
       }
     } else {
-      // console.log(room[0].rooms_objects[4].object_description);
+      
       console.log(`                     `);
 
       loadPrompts();
