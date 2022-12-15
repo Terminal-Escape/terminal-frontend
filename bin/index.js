@@ -67,6 +67,7 @@ async function signInPrompt() {
     ================================
 
     Hello, ${chalk.bold.bgYellowBright.green(`${userName}`)} . 
+                                                              
     What is your password?
     
     ================================
@@ -91,14 +92,13 @@ async function initialPrompt() {
     await pause();
     console.log(`
     ================================
-    
+                                                          
     Do you have a login?
-
+                                                          
           1. Yes
-
+                                                          
           2. No
-
-
+                                                          
     ================================
   `);
     authType = prompt();
@@ -118,6 +118,7 @@ async function initialPrompt() {
     await shortPause();
     console.log(chalk.italic.bgWhite.blue(`Are you ready to begin? `));
     await shortPause();
+    console.log(`                                                          `);
     prompt(chalk.bgGray.green('Press any key to continue'));
     console.log(cabin);
     await pause();
@@ -140,9 +141,10 @@ async function loadPrompts() {
     stringItem.charAt(1).toUpperCase() + stringItem.slice(2);
 
   const itemsList = capitalized(stringItem);
-
+console.log(`                                                          `);
   console.log('Current Inventory: ' + itemsList);
   await pause();
+console.log(`                                                          `);
   console.log(`The Objects in the room are...
   1. Desk
   2. Bunk Beds
@@ -150,7 +152,7 @@ async function loadPrompts() {
   4. Window
   5. Door
   `);
-
+console.log(`                                                          `);
   let object = prompt('Which object would you like to investigate? ');
 
   //DESK
@@ -162,13 +164,16 @@ async function loadPrompts() {
       // Desk with lantern and Journal
       console.log(deskLampJournal);
       await pause();
+console.log(`                                                          `);
       console.log(room[0].rooms_objects[0].object_description);
       //asks user for which to investigate.
+console.log(`                                                          `);
+
       console.log(`Which do you wish to investigate?
       1. Lantern
       2. Journal
       `);
-
+console.log(`                                                          `);
       let deskPrompt = prompt();
       //user investigates lantern
       if (deskPrompt === '1') {
