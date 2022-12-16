@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-const chalk = require('chalk');
-const prompt = require('prompt-sync')();
-const fetch = require('cross-fetch');
-const cookie = require('cookie');
+const chalk = require("chalk");
+const prompt = require("prompt-sync")();
+const fetch = require("cross-fetch");
+const cookie = require("cookie");
 
-const { fetchRoom, fetchUserItem, fetchItemsTable } = require('../fetch-utils');
-const { signInUser, signUpUser } = require('../auth-utils');
+const { fetchRoom, fetchUserItem, fetchItemsTable } = require("../fetch-utils");
+const { signInUser, signUpUser } = require("../auth-utils");
 
 const {
   terminalForestBolger,
@@ -36,8 +36,8 @@ const {
   windowNums,
   emptyDesk,
   freedom,
-} = require('../ascii');
-const { thomas, charlie, sam, ryan } = require('../devAscii');
+} = require("../ascii");
+const { thomas, charlie, sam, ryan } = require("../devAscii");
 
 const {
   rv90,
@@ -55,9 +55,9 @@ const {
   woodsmansFriend,
   bearboxOpen,
   bearboxClosed,
-} = require('../campgroundAscii');
+} = require("../campgroundAscii");
 
-require('dotenv').config();
+require("dotenv").config();
 
 const pause = (ms = 1000) => new Promise((r) => setTimeout(r, ms));
 const shortPause = (ms = 500) => new Promise((r) => setTimeout(r, ms));
@@ -68,17 +68,16 @@ let user_items;
 let items;
 let room;
 
-
 function lineBreak() {
   console.log(`                     `);
 }
 
 async function signUpPrompt() {
-  console.log(chalk.italic.bgWhite.blue('Enter your Username '));
+  console.log(chalk.italic.bgWhite.blue("Enter your Username "));
   let userName = prompt();
   lineBreak();
 
-  console.log(chalk.italic.bgWhite.blue('Enter your Password '));
+  console.log(chalk.italic.bgWhite.blue("Enter your Password "));
   let password = prompt();
   lineBreak();
 
@@ -92,7 +91,7 @@ async function signUpPrompt() {
 }
 
 async function signInPrompt() {
-  console.log(chalk.italic.bgWhite.blue('What is your Username? '));
+  console.log(chalk.italic.bgWhite.blue("What is your Username? "));
   let userName = prompt();
   lineBreak();
 
@@ -114,7 +113,7 @@ async function signInPrompt() {
     validUser = false;
 
     lineBreak();
-    console.log(chalk.bold.red('Invalid username/password'));
+    console.log(chalk.bold.red("Invalid username/password"));
     lineBreak();
 
     signInPrompt();
@@ -139,18 +138,18 @@ async function initialPrompt() {
   `);
     authType = prompt();
 
-    if (authType === '1') {
+    if (authType === "1") {
       signInPrompt();
     }
-    if (authType === '2') {
+    if (authType === "2") {
       signUpPrompt();
     }
   } else if (validUser === true) {
     console.log(terminalForestCosmike);
-    
+
     user_items = await fetchUserItem();
     items = await fetchItemsTable();
-    
+
     await pause();
     await shortPause();
     lineBreak();
@@ -165,7 +164,7 @@ async function initialPrompt() {
     await shortPause();
     lineBreak();
 
-    prompt(chalk.bgGray.green('Press enter to continue'));
+    prompt(chalk.bgGray.green("Press enter to continue"));
     console.log(cabin);
     await pause();
     lineBreak();
@@ -180,25 +179,25 @@ async function loadDevs() {
 
   lineBreak();
   await shortPause();
-  console.log(chalk.hex('#b100cd').bold('Thomas Jenkins'));
+  console.log(chalk.hex("#b100cd").bold("Thomas Jenkins"));
   await pause();
   lineBreak();
 
   console.log(
     chalk.green.bold(
-      'Thomas is a battle-hardened warrior from the line of Durin of the Dwarves of Erebor. He believes the greatest treasure are the friends we made along the journey.'
+      "Thomas is a battle-hardened warrior from the line of Durin of the Dwarves of Erebor. He believes the greatest treasure are the friends we made along the journey."
     )
   );
   await pause();
   lineBreak();
 
   console.log(
-    chalk.blue('Linkedin: https://www.linkedin.com/in/thomas-p-jenkins/>')
+    chalk.blue("Linkedin: https://www.linkedin.com/in/thomas-p-jenkins/>")
   );
   await shortPause();
   lineBreak();
 
-  console.log(chalk.blue('GitHub: https://github.com/Thomas-Jenkins'));
+  console.log(chalk.blue("GitHub: https://github.com/Thomas-Jenkins"));
   await pause();
   lineBreak();
 
@@ -207,7 +206,7 @@ async function loadDevs() {
 
   lineBreak();
   await shortPause();
-  console.log(chalk.hex('#b100cd').bold('Sam Adams'));
+  console.log(chalk.hex("#b100cd").bold("Sam Adams"));
   await pause();
   lineBreak();
 
@@ -219,11 +218,11 @@ async function loadDevs() {
   await pause();
   lineBreak();
 
-  console.log(chalk.blue('Linkedin: https://www.linkedin.com/in/samsadams/'));
+  console.log(chalk.blue("Linkedin: https://www.linkedin.com/in/samsadams/"));
   await shortPause();
   lineBreak();
 
-  console.log(chalk.blue('GitHub: https://github.com/soup1e'));
+  console.log(chalk.blue("GitHub: https://github.com/soup1e"));
   await pause();
   lineBreak();
 
@@ -232,7 +231,7 @@ async function loadDevs() {
 
   lineBreak();
   await shortPause();
-  console.log(chalk.hex('#b100cd').bold('Charles Crabtree'));
+  console.log(chalk.hex("#b100cd").bold("Charles Crabtree"));
   await pause();
   lineBreak();
 
@@ -245,12 +244,12 @@ async function loadDevs() {
   lineBreak();
 
   console.log(
-    chalk.blue('Linkedin: https://www.linkedin.com/in/charles-crabtree/')
+    chalk.blue("Linkedin: https://www.linkedin.com/in/charles-crabtree/")
   );
   await shortPause();
   lineBreak();
 
-  console.log(chalk.blue('Github: https://github.com/charlescrabtree'));
+  console.log(chalk.blue("Github: https://github.com/charlescrabtree"));
   await pause();
   lineBreak();
 
@@ -259,7 +258,7 @@ async function loadDevs() {
 
   lineBreak();
   await shortPause();
-  console.log(chalk.hex('#b100cd').bold('Ryan Parker'));
+  console.log(chalk.hex("#b100cd").bold("Ryan Parker"));
   await pause();
   lineBreak();
 
@@ -272,12 +271,12 @@ async function loadDevs() {
   lineBreak();
 
   console.log(
-    chalk.blue('Linkedin: https://www.linkedin.com/in/ryanparkerdev/')
+    chalk.blue("Linkedin: https://www.linkedin.com/in/ryanparkerdev/")
   );
   await shortPause();
   lineBreak();
 
-  console.log(chalk.blue('GitHub: https://github.com/ryan-j-parker'));
+  console.log(chalk.blue("GitHub: https://github.com/ryan-j-parker"));
   lineBreak();
   await pause();
 
@@ -295,7 +294,8 @@ async function loadDevs() {
 async function loadPrompts() {
   // await switchArray();
   room = await fetchRoom();
-  console.log(room[1].room_description);
+  console.log(room);
+  console.log(room[0].room_description);
   lineBreak();
 
   // Inventory Check
@@ -303,12 +303,12 @@ async function loadPrompts() {
   const filtered = user_items.filter(
     (user_item) => user_item.item_true === true
   );
-  const filteredMap = filtered.map((item) => ' ' + item.item_name);
+  const filteredMap = filtered.map((item) => " " + item.item_name);
   const stringItem = filteredMap.toString();
   const capitalized = (stringItem) =>
     stringItem.charAt(1).toUpperCase() + stringItem.slice(2);
   const itemsList = capitalized(stringItem);
-  console.log('Current Inventory: ' + itemsList);
+  console.log("Current Inventory: " + itemsList);
   await pause();
   lineBreak();
 
@@ -321,11 +321,11 @@ async function loadPrompts() {
   `);
 
   lineBreak();
-  let object = prompt('Which object would you like to investigate? ');
+  let object = prompt("Which object would you like to investigate? ");
   lineBreak();
 
   //DESK
-  if (object === '1') {
+  if (object === "1") {
     if (
       user_items[2].item_true === false && //Lantern
       user_items[3].item_true === false //Journal
@@ -346,27 +346,27 @@ async function loadPrompts() {
       lineBreak();
 
       //user investigates lantern
-      if (deskPrompt === '1') {
+      if (deskPrompt === "1") {
         console.log(lanternSm);
         await pause();
         lineBreak();
 
-        console.log(chalk.yellow.bold('You pick up the lantern.'));
+        console.log(chalk.yellow.bold("You pick up the lantern."));
         user_items[2].item_true = true;
         await shortPause();
         lineBreak();
 
-        prompt(chalk.bgGray.green('Press enter to continue'));
+        prompt(chalk.bgGray.green("Press enter to continue"));
         lineBreak();
 
         loadPrompts();
-      } else if (deskPrompt === '2') {
+      } else if (deskPrompt === "2") {
         console.log(journal);
         await pause();
         lineBreak();
 
         console.log(
-          chalk.yellow.bold('You pick up and flip through the journal')
+          chalk.yellow.bold("You pick up and flip through the journal")
         );
         lineBreak();
 
@@ -383,7 +383,7 @@ async function loadPrompts() {
         await shortPause();
         lineBreak();
 
-        prompt(chalk.bgGray.green('Press enter to continue'));
+        prompt(chalk.bgGray.green("Press enter to continue"));
         lineBreak();
 
         loadPrompts();
@@ -398,7 +398,7 @@ async function loadPrompts() {
 
       console.log(room[0].rooms_objects[0].object_secret_one);
       console.log(
-        chalk.yellow.bold('You pick up and flip through the journal')
+        chalk.yellow.bold("You pick up and flip through the journal")
       );
       console.log(items[3].item_description);
       console.log(items[3].item_secret);
@@ -406,7 +406,7 @@ async function loadPrompts() {
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
@@ -419,12 +419,12 @@ async function loadPrompts() {
       lineBreak();
 
       console.log(room[0].rooms_objects[0].object_secret_two);
-      console.log(chalk.yellow.bold('You pick up the lantern.'));
+      console.log(chalk.yellow.bold("You pick up the lantern."));
       user_items[2].item_true = true;
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
@@ -442,7 +442,7 @@ async function loadPrompts() {
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
@@ -452,7 +452,7 @@ async function loadPrompts() {
     // console.log(deskLampJournal);
 
     //BUNK BEDS
-  } else if (object === '2') {
+  } else if (object === "2") {
     if (user_items[0].item_true === false) {
       console.log(keyItem);
       await pause();
@@ -463,7 +463,7 @@ async function loadPrompts() {
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
@@ -476,14 +476,14 @@ async function loadPrompts() {
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
     }
 
     //LOCK BOX
-  } else if (object === '3') {
+  } else if (object === "3") {
     if (
       user_items[0].item_true === false &&
       user_items[1].item_true === false
@@ -496,7 +496,7 @@ async function loadPrompts() {
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
@@ -513,7 +513,7 @@ async function loadPrompts() {
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
@@ -529,14 +529,14 @@ async function loadPrompts() {
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
     }
 
     //WINDOW
-  } else if (object === '4') {
+  } else if (object === "4") {
     if (user_items[2].item_true === false) {
       console.log(window);
       await pause();
@@ -546,7 +546,7 @@ async function loadPrompts() {
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
@@ -563,14 +563,14 @@ async function loadPrompts() {
       await shortPause();
       lineBreak();
 
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadPrompts();
     }
 
     //DOOR
-  } else if (object === '5') {
+  } else if (object === "5") {
     console.log(doorAndPadSm);
     await pause();
     lineBreak();
@@ -594,10 +594,10 @@ async function loadPrompts() {
       await pause();
       lineBreak();
 
-      const doorPrompt = prompt('Enter code to open door... ');
+      const doorPrompt = prompt("Enter code to open door... ");
       lineBreak();
 
-      if (doorPrompt === '513426') {
+      if (doorPrompt === "513426") {
         console.log(freedom);
         await pause();
         lineBreak();
@@ -607,7 +607,7 @@ async function loadPrompts() {
         );
         await pause();
         lineBreak();
-        
+
         const devs = prompt(
           chalk.bgGray.green(`
           What would you like to do now?
@@ -615,23 +615,23 @@ async function loadPrompts() {
           2. About the developers
           `)
         );
-        if (devs === '1') {
+        if (devs === "1") {
           loadCampground();
-        } else if (devs === '2') {
+        } else if (devs === "2") {
           await loadDevs();
         }
-        prompt('Play again?');
+        prompt("Play again?");
         initialPrompt();
-      } else if (doorPrompt === '426513') {
+      } else if (doorPrompt === "426513") {
         console.log(skyrim);
         await pause();
         lineBreak();
 
         console.log(
           chalk
-            .hex('#b100cd')
+            .hex("#b100cd")
             .bold(
-              'Hey, you. You’re finally awake. You were trying to cross the border, right? Walked right into that Imperial ambush, same as us, and that thief over there.'
+              "Hey, you. You’re finally awake. You were trying to cross the border, right? Walked right into that Imperial ambush, same as us, and that thief over there."
             )
         );
         await pause();
@@ -644,15 +644,15 @@ async function loadPrompts() {
         `)
         );
         const devs = prompt();
-        if (devs === '1') {
+        if (devs === "1") {
           initialPrompt();
-        } else if (devs === '2') {
+        } else if (devs === "2") {
           await loadDevs();
         }
-        prompt('Play again?');
+        prompt("Play again?");
         initialPrompt();
       } else {
-        console.log('Incorrect code entered');
+        console.log("Incorrect code entered");
         lineBreak();
         await pause();
 
@@ -666,7 +666,7 @@ async function loadPrompts() {
   } else {
     lineBreak();
 
-    console.log('Unacceptable Input please try again.');
+    console.log("Unacceptable Input please try again.");
     lineBreak();
     await pause();
 
@@ -679,8 +679,14 @@ async function loadPrompts() {
 async function loadCampground() {
   // await switchArray();
   room = await fetchRoom();
-  console.log(room);
+  user_items = await fetchUserItem();
+
+  console.log(room[1].rooms_objects);
+  console.log("!!!!!!!!!!!!!!", user_items);
+
   console.log(room[1].room_description);
+
+  console.log("1", room[1]);
 
   console.log(
     chalk.blue(
@@ -695,7 +701,7 @@ async function loadCampground() {
     )
   );
   const where = prompt(`Which would you like to investigate?`);
-  if (where === '1') {
+  if (where === "1") {
     // dock
     // console.log(room[1].object[5].object_description);
     if (user_items[7].item_true === false) {
@@ -703,7 +709,7 @@ async function loadCampground() {
       await pause();
       lineBreak();
 
-      console.log(room[1].objects[5].object_description);
+      console.log(room[1].rooms_objects[5].object_description);
       await pause();
       lineBreak();
 
@@ -711,75 +717,71 @@ async function loadCampground() {
       lineBreak();
 
       user_items[7].item_true === true;
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
-      
-      loadCampground();
-      
-    } else if (user_items[7].item_true === true) {
-      console.log(room[1].objects[5].object_secret_one);
-      prompt(chalk.bgGray.green('Press enter to continue'));
 
       loadCampground();
-      
+    } else if (user_items[7].item_true === true) {
+      console.log(room[1].rooms_objects[5].object_secret_one);
+      prompt(chalk.bgGray.green("Press enter to continue"));
+
+      loadCampground();
     }
   }
-  if (where === '2') {
+  if (where === "2") {
     if (user_items[5].item_true === false) {
       console.log(firepit);
       lineBreak();
 
-      console.log(room[1].objects[6].object_description);
+      console.log(room[1].rooms_objects[6].object_description);
       await pause();
       lineBreak();
 
       console.log(items[4].item_description);
       user_items[5].item_true === true;
       console.log(woodsmansFriend);
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       loadCampground();
-
     } else if (user_items[5].item_true === true) {
-      console.log(room[1].objects[6].object_secret_one);
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      console.log(room[1].rooms_objects[6].object_secret_one);
+      prompt(chalk.bgGray.green("Press enter to continue"));
       loadCampground();
-
     }
     // fire pit
     // axe
     user_items[5].item_true === true;
   }
-  if (where === '3') {
+  if (where === "3") {
     // tent
     if (user_items[8].item_true === false) {
       console.log(tent70);
       await pause();
       lineBreak();
 
-      console.log(room[1].objects[7].object_description);
+      console.log(room[1].rooms_objects[7].object_description);
       await pause();
       lineBreak();
-      
+
       console.log(items[7].item_description);
       user_items[8].item_true === true;
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       lineBreak();
 
       loadCampground();
     } else if (user_items[8].item_true === true) {
-      console.log(room[1].objects[7].object_secret_one);
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      console.log(room[1].rooms_objects[7].object_secret_one);
+      prompt(chalk.bgGray.green("Press enter to continue"));
       loadCampground();
     }
     // first aid kit
   }
-  if (where === '4') {
+  if (where === "4") {
     // bear box
     //                            ASCII needed for bear box
     if (user_items[6].item_true === false) {
       console.log(bearboxClosed);
-      console.log(room[1].objects[8].object_description);
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      console.log(room[1].rooms_objects[8].object_description);
+      prompt(chalk.bgGray.green("Press enter to continue"));
       loadCampground();
     } else if (
       user_items[6].item_true === true &&
@@ -787,10 +789,10 @@ async function loadCampground() {
     ) {
       console.log(bearBoxOpen);
       await pause();
-      console.log(room[1].objects[8].object_secret_one);
+      console.log(room[1].rooms_objects[8].object_secret_one);
       await pause();
-      console.log(grizzly)
-      console.log(room[1].objects[10].object_description);
+      console.log(grizzly);
+      console.log(room[1].rooms_objects[10].object_description);
       //ending
       console.log(
         chalk.bgGray.green(`
@@ -800,12 +802,12 @@ async function loadCampground() {
       `)
       );
       const devs = prompt();
-      if (devs === '1') {
+      if (devs === "1") {
         initialPrompt();
-      } else if (devs === '2') {
+      } else if (devs === "2") {
         await loadDevs();
       }
-      prompt('Play again?');
+      prompt("Play again?");
       initialPrompt();
     } else if (
       user_items[6].item_true === true &&
@@ -814,10 +816,10 @@ async function loadCampground() {
     ) {
       console.log(bearBoxOpen);
       await pause();
-      console.log(room[1].objects[8].object_secret_one);
+      console.log(room[1].rooms_objects[8].object_secret_one);
       await pause();
-      console.log(grizzly)
-      console.log(room[1].objects[10].object_secret_one);
+      console.log(grizzly);
+      console.log(room[1].rooms_objects[10].object_secret_one);
       //ending
       console.log(
         chalk.bgGray.green(`
@@ -827,12 +829,12 @@ async function loadCampground() {
       `)
       );
       const devs = prompt();
-      if (devs === '1') {
+      if (devs === "1") {
         initialPrompt();
-      } else if (devs === '2') {
+      } else if (devs === "2") {
         await loadDevs();
       }
-      prompt('Play again?');
+      prompt("Play again?");
       initialPrompt();
     } else if (
       user_items[6].item_true === true &&
@@ -840,11 +842,11 @@ async function loadCampground() {
       user_items[8].item_true === true
     ) {
       console.log(bearBoxOpen);
-      await pause()
-      console.log(room[1].objects[8].object_secret_one);
+      await pause();
+      console.log(room[1].rooms_objects[8].object_secret_one);
       await pause();
       console.log(grizzly);
-      console.log(room[1].objects[10].object_secret_two);
+      console.log(room[1].rooms_objects[10].object_secret_two);
       //ending
       console.log(
         chalk.bgGray.green(`
@@ -854,35 +856,35 @@ async function loadCampground() {
       `)
       );
       const devs = prompt();
-      if (devs === '1') {
+      if (devs === "1") {
         initialPrompt();
-      } else if (devs === '2') {
+      } else if (devs === "2") {
         await loadDevs();
       }
-      prompt('Play again?');
+      prompt("Play again?");
       initialPrompt();
     }
     // food stuffs
     // user_items[9].item_true === true; (i dont think we need this here)
   }
-  if (where === '5') {
+  if (where === "5") {
     // RV
     if (user_items[6].item_true === false) {
       console.log(rv70);
       await pause();
       lineBreak();
 
-      console.log(room[1].objects[9].object_description);
+      console.log(room[1].rooms_objects[9].object_description);
       await pause();
       lineBreak();
 
       console.log(items[5].item_description);
       user_items[6].item_true === true;
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      prompt(chalk.bgGray.green("Press enter to continue"));
       loadCampground();
     } else if (user_items[6].item_true === true) {
-      console.log(room[1].objects[9].object_secret_one);
-      prompt(chalk.bgGray.green('Press enter to continue'));
+      console.log(room[1].rooms_objects[9].object_secret_one);
+      prompt(chalk.bgGray.green("Press enter to continue"));
       loadCampground();
     }
     // key ring
@@ -890,7 +892,7 @@ async function loadCampground() {
   }
 }
 
-initialPrompt();
+// initialPrompt();
 
-// loadCampground();
+loadCampground();
 // loadPrompts();
