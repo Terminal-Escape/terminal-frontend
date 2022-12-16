@@ -66,6 +66,8 @@ let validUser = false;
 let userCookie;
 let user_items;
 let items;
+let room;
+
 
 function lineBreak() {
   console.log(`                     `);
@@ -285,9 +287,15 @@ async function loadDevs() {
   //   loadPrompts();
 }
 
+// async function switchArray() {
+//   room = await fetchRoom();
+//   room.unshift(room.pop());
+// }
+
 async function loadPrompts() {
-  let room = await fetchRoom();
-  console.log(room[0].room_description);
+  // await switchArray();
+  room = await fetchRoom();
+  console.log(room[1].room_description);
   lineBreak();
 
   // Inventory Check
@@ -603,12 +611,12 @@ async function loadPrompts() {
         const devs = prompt(
           chalk.bgGray.green(`
           What would you like to do now?
-          1. Play again
+          1. Continue
           2. About the developers
           `)
         );
         if (devs === '1') {
-          initialPrompt();
+          loadCampground();
         } else if (devs === '2') {
           await loadDevs();
         }
@@ -666,10 +674,12 @@ async function loadPrompts() {
   }
 }
 
-initialPrompt();
+// initialPrompt();
 
 async function loadCampground() {
-  const room = await fetchRoom();
+  // await switchArray();
+  room = await fetchRoom();
+  console.log(room);
   console.log(room[1].room_description);
 
   console.log(
@@ -880,5 +890,7 @@ async function loadCampground() {
   }
 }
 
-loadCampground();
+initialPrompt();
+
+// loadCampground();
 // loadPrompts();
