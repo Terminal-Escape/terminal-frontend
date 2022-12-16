@@ -7,8 +7,11 @@
     "terminal-woods-cli": "./bin/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node terminal-woods.js"
   },
+  
+
   "keywords": [],
   "author": "Sam adams, Ryan Parker, Thomas Jenkins, Charles Crabtree",
   "license": "ISC",
