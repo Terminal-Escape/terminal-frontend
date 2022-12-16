@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sam adams, Ryan Parker, Thomas Jenkins, Charles Crabtree",
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",

@@ -1,5 +1,5 @@
 const fetch = require("cross-fetch");
-const API_URL = 'https://terminalescaperoom.herokuapp.com';
+const API_URL = "https://terminalescaperoom.herokuapp.com";
 
 async function fetchRoom() {
   const response = await fetch(`${API_URL}/api/v1/rooms`, {
