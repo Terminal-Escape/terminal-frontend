@@ -286,15 +286,9 @@ async function loadDevs() {
   //   loadPrompts();
 }
 
-// async function switchArray() {
-//   room = await fetchRoom();
-//   room.unshift(room.pop());
-// }
-
 async function loadPrompts() {
-  // await switchArray();
   room = await fetchRoom();
-  console.log(room);
+
   console.log(room[0].room_description);
   lineBreak();
 
@@ -608,20 +602,20 @@ async function loadPrompts() {
         await pause();
         lineBreak();
 
-        const devs = prompt(
-          chalk.bgGray.green(`
-          What would you like to do now?
-          1. Continue
-          2. About the developers
-          `)
-        );
-        if (devs === "1") {
-          loadCampground();
-        } else if (devs === "2") {
-          await loadDevs();
-        }
-        prompt("Play again?");
-        initialPrompt();
+        await loadDevs();
+
+        // console.log(`
+        // What would you like to do now?
+        // 1. Restart
+        // 2. About the developers
+        // `);
+        // const devs = prompt();
+
+        // if (devs === "1") {
+        //   loadPrompts();
+        // } else if (devs === "2") {
+        // await loadDevs();
+        // }
       } else if (doorPrompt === "426513") {
         console.log(skyrim);
         await pause();
@@ -636,21 +630,23 @@ async function loadPrompts() {
         );
         await pause();
 
-        console.log(
-          chalk.bgGray.green(`
-        What would you like to do now?
-        1. Play again
-        2. About the developers
-        `)
-        );
-        const devs = prompt();
-        if (devs === "1") {
-          initialPrompt();
-        } else if (devs === "2") {
-          await loadDevs();
-        }
-        prompt("Play again?");
-        initialPrompt();
+        // console.log(
+        //   chalk.bgGray.green(`
+        // What would you like to do now?
+        // 1. Play again
+        // 2. About the developers
+        // `)
+        // );
+        // const devs = prompt();
+        // if (devs === "1") {
+        //   initialPrompt();
+        // } else if (devs === "2") {
+        //   await loadDevs();
+        // }
+        // prompt("Play again?");
+        // initialPrompt();
+
+        await loadDevs();
       } else {
         console.log("Incorrect code entered");
         lineBreak();
@@ -674,225 +670,4 @@ async function loadPrompts() {
   }
 }
 
-// initialPrompt();
-
-async function loadCampground() {
-  // await switchArray();
-  room = await fetchRoom();
-  user_items = await fetchUserItem();
-
-  console.log(room[1].rooms_objects);
-  console.log("!!!!!!!!!!!!!!", user_items);
-
-  console.log(room[1].room_description);
-
-  console.log("1", room[1]);
-
-  console.log(
-    chalk.blue(
-      `
-    You see:
-    1. Dock
-    2. Fire pit
-    3. Tent
-    4. Bear box
-    5. RV
-    `
-    )
-  );
-  const where = prompt(`Which would you like to investigate?`);
-  if (where === "1") {
-    // dock
-    // console.log(room[1].object[5].object_description);
-    if (user_items[7].item_true === false) {
-      console.log(boatDock);
-      await pause();
-      lineBreak();
-
-      console.log(room[1].rooms_objects[5].object_description);
-      await pause();
-      lineBreak();
-
-      console.log(items[7].item_description);
-      lineBreak();
-
-      user_items[7].item_true === true;
-      prompt(chalk.bgGray.green("Press enter to continue"));
-      lineBreak();
-
-      loadCampground();
-    } else if (user_items[7].item_true === true) {
-      console.log(room[1].rooms_objects[5].object_secret_one);
-      prompt(chalk.bgGray.green("Press enter to continue"));
-
-      loadCampground();
-    }
-  }
-  if (where === "2") {
-    if (user_items[5].item_true === false) {
-      console.log(firepit);
-      lineBreak();
-
-      console.log(room[1].rooms_objects[6].object_description);
-      await pause();
-      lineBreak();
-
-      console.log(items[4].item_description);
-      user_items[5].item_true === true;
-      console.log(woodsmansFriend);
-      prompt(chalk.bgGray.green("Press enter to continue"));
-      loadCampground();
-    } else if (user_items[5].item_true === true) {
-      console.log(room[1].rooms_objects[6].object_secret_one);
-      prompt(chalk.bgGray.green("Press enter to continue"));
-      loadCampground();
-    }
-    // fire pit
-    // axe
-    user_items[5].item_true === true;
-  }
-  if (where === "3") {
-    // tent
-    if (user_items[8].item_true === false) {
-      console.log(tent70);
-      await pause();
-      lineBreak();
-
-      console.log(room[1].rooms_objects[7].object_description);
-      await pause();
-      lineBreak();
-
-      console.log(items[7].item_description);
-      user_items[8].item_true === true;
-      prompt(chalk.bgGray.green("Press enter to continue"));
-      lineBreak();
-
-      loadCampground();
-    } else if (user_items[8].item_true === true) {
-      console.log(room[1].rooms_objects[7].object_secret_one);
-      prompt(chalk.bgGray.green("Press enter to continue"));
-      loadCampground();
-    }
-    // first aid kit
-  }
-  if (where === "4") {
-    // bear box
-    //                            ASCII needed for bear box
-    if (user_items[6].item_true === false) {
-      console.log(bearboxClosed);
-      console.log(room[1].rooms_objects[8].object_description);
-      prompt(chalk.bgGray.green("Press enter to continue"));
-      loadCampground();
-    } else if (
-      user_items[6].item_true === true &&
-      user_items[5].item_true === false
-    ) {
-      console.log(bearBoxOpen);
-      await pause();
-      console.log(room[1].rooms_objects[8].object_secret_one);
-      await pause();
-      console.log(grizzly);
-      console.log(room[1].rooms_objects[10].object_description);
-      //ending
-      console.log(
-        chalk.bgGray.green(`
-      What would you like to do now?
-      1. Play again
-      2. About the developers
-      `)
-      );
-      const devs = prompt();
-      if (devs === "1") {
-        initialPrompt();
-      } else if (devs === "2") {
-        await loadDevs();
-      }
-      prompt("Play again?");
-      initialPrompt();
-    } else if (
-      user_items[6].item_true === true &&
-      user_items[5].item_true === true &&
-      user_items[8].item_true === false
-    ) {
-      console.log(bearBoxOpen);
-      await pause();
-      console.log(room[1].rooms_objects[8].object_secret_one);
-      await pause();
-      console.log(grizzly);
-      console.log(room[1].rooms_objects[10].object_secret_one);
-      //ending
-      console.log(
-        chalk.bgGray.green(`
-      What would you like to do now?
-      1. Play again
-      2. About the developers
-      `)
-      );
-      const devs = prompt();
-      if (devs === "1") {
-        initialPrompt();
-      } else if (devs === "2") {
-        await loadDevs();
-      }
-      prompt("Play again?");
-      initialPrompt();
-    } else if (
-      user_items[6].item_true === true &&
-      user_items[5].item_true === true &&
-      user_items[8].item_true === true
-    ) {
-      console.log(bearBoxOpen);
-      await pause();
-      console.log(room[1].rooms_objects[8].object_secret_one);
-      await pause();
-      console.log(grizzly);
-      console.log(room[1].rooms_objects[10].object_secret_two);
-      //ending
-      console.log(
-        chalk.bgGray.green(`
-      What would you like to do now?
-      1. Play again
-      2. About the developers
-      `)
-      );
-      const devs = prompt();
-      if (devs === "1") {
-        initialPrompt();
-      } else if (devs === "2") {
-        await loadDevs();
-      }
-      prompt("Play again?");
-      initialPrompt();
-    }
-    // food stuffs
-    // user_items[9].item_true === true; (i dont think we need this here)
-  }
-  if (where === "5") {
-    // RV
-    if (user_items[6].item_true === false) {
-      console.log(rv70);
-      await pause();
-      lineBreak();
-
-      console.log(room[1].rooms_objects[9].object_description);
-      await pause();
-      lineBreak();
-
-      console.log(items[5].item_description);
-      user_items[6].item_true === true;
-      prompt(chalk.bgGray.green("Press enter to continue"));
-      loadCampground();
-    } else if (user_items[6].item_true === true) {
-      console.log(room[1].rooms_objects[9].object_secret_one);
-      prompt(chalk.bgGray.green("Press enter to continue"));
-      loadCampground();
-    }
-    // key ring
-    user_items[6].item_true === true;
-  }
-}
-
-// initialPrompt();
-
-loadCampground();
-// loadPrompts();
+initialPrompt();
