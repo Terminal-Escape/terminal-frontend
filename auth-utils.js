@@ -3,7 +3,6 @@ const fetch = require("cross-fetch");
 const chalk = require("chalk");
 
 async function signUpUser(userName, password) {
-  console.log("beforeresp");
   const resp = await fetch(`${process.env.API_URL}/api/v1/users`, {
     method: "POST",
     headers: {
