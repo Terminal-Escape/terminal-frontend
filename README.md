@@ -9,4 +9,4 @@
 
 ### Interact with the CLI to navigate through your pastoral prison, and interact with the objects and environment to make good your escape. Can you solve the super-duper-complex riddle needed to escape this rustic (but sorta comfy) dungeon? Or will you remain forever, in the...
 
-# {whatever we end up naming this game}
+# Escape from Terminal Forest
