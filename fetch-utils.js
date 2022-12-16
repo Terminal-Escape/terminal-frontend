@@ -1,7 +1,8 @@
 const fetch = require("cross-fetch");
+const API_URL = 'https://terminalescaperoom.herokuapp.com';
 
 async function fetchRoom() {
-  const response = await fetch(`${process.env.API_URL}/api/v1/rooms`, {
+  const response = await fetch(`${API_URL}/api/v1/rooms`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -13,7 +14,7 @@ async function fetchRoom() {
 }
 
 async function fetchUserItem() {
-  const response = await fetch(`${process.env.API_URL}/api/v1/userItem`, {
+  const response = await fetch(`${API_URL}/api/v1/userItem`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -25,7 +26,7 @@ async function fetchUserItem() {
 }
 
 async function fetchItemsTable() {
-  const response = await fetch(`${process.env.API_URL}/api/v1/items`, {
+  const response = await fetch(`${API_URL}/api/v1/items`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -37,7 +38,7 @@ async function fetchItemsTable() {
 }
 
 // async function fetchUser() {
-//   const response = await fetch(`${process.env.API_URL}/api/v1/Users`, {
+//   const response = await fetch(`${API_URL}/api/v1/Users`, {
 //     method: 'GET',
 //     headers: {
 //       Accept: 'application/json',
@@ -50,7 +51,7 @@ async function fetchItemsTable() {
 // }
 
 // async function createUser() {
-//   const response = await fetch(`${process.env.API_URL}/api/v1/Users`, {
+//   const response = await fetch(`${API_URL}/api/v1/Users`, {
 //     method: 'PUT',
 //     headers: {
 //       Accept: 'application/json',
